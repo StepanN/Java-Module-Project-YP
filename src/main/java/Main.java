@@ -5,21 +5,26 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         Race currentRace = new Race();
+        int carSpeed;
 
         for (int i = 1; i < 4; i++) {
             System.out.println("— Введите название машины № " + i);
             String carName = in.next();
             System.out.println("— Введите скорость машины № " + i);
-            int carSpeed = in.nextInt();
 
-            if (carSpeed < 0 || carSpeed > 250) {
+            while (!in.hasNextInt()) {
+                System.out.println("— Неправильная скорость");
+                System.out.println("— Введите скорость машины № " + i);
+                in.next();
+            }
+            carSpeed = in.nextInt();
 
                 while (carSpeed < 0 || carSpeed > 250) {
                     System.out.println("— Неправильная скорость");
                     System.out.println("— Введите скорость машины № " + i);
                     carSpeed = in.nextInt();
                 }
-            }
+
             Car currentCar = new Car(carName, carSpeed);
             currentRace.setLeader(currentCar);
         }
